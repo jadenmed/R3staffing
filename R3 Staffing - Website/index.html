@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>R3 Staffing — Sales Talent + AI. Predictable Revenue.</title>
+    <title>R3 Staffing — High-ticket sales, fully optimized.</title>
 
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Fonts -->
+    <!-- Fonts (KEEPING YOUR TYPOGRAPHY) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700;800&family=Onest:wght@600;700&display=swap"
       rel="stylesheet"
     />
 
@@ -21,8 +20,9 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ["Inter", "ui-sans-serif", "system-ui"],
-              display: ["Montserrat", "Inter", "ui-sans-serif", "system-ui"],
+              mont: ["Montserrat", "system-ui", "Segoe UI", "Roboto", "Arial"],
+              inter: ["Inter", "system-ui", "Segoe UI", "Roboto", "Arial"],
+              onest: ["Onest", "system-ui", "Segoe UI", "Roboto", "Arial"],
             },
             colors: {
               r3: {
@@ -39,22 +39,17 @@
               },
             },
             boxShadow: {
-              glow: "0 0 0 1px rgba(25,86,252,.25), 0 10px 40px rgba(25,86,252,.18)",
-              soft: "0 10px 30px rgba(0,0,0,.35)",
+              glow: "0 0 0 1px rgba(25,86,252,.25), 0 18px 60px rgba(25,86,252,.22)",
+              soft: "0 20px 80px rgba(0,0,0,.55)",
             },
             keyframes: {
-              floaty: {
-                "0%, 100%": { transform: "translateY(0px)" },
-                "50%": { transform: "translateY(-8px)" },
-              },
-              shimmer: {
-                "0%": { transform: "translateX(-120%)" },
-                "100%": { transform: "translateX(120%)" },
+              marquee: {
+                "0%": { transform: "translateX(0)" },
+                "100%": { transform: "translateX(-50%)" },
               },
             },
             animation: {
-              floaty: "floaty 6s ease-in-out infinite",
-              shimmer: "shimmer 2.2s ease-in-out infinite",
+              marquee: "marquee 22s linear infinite",
             },
           },
         },
@@ -62,603 +57,207 @@
     </script>
 
     <style>
-      html {
-        scroll-behavior: smooth;
+      html { scroll-behavior: smooth; }
+
+      /* your established background */
+      .hero-bg { position: relative; isolation: isolate; overflow: hidden; min-height: 100vh; }
+      .hero-bg:before{
+        content:"";
+        position:absolute; inset:-2px;
+        z-index:-2;
+        background:
+          radial-gradient(1200px 700px at 50% 35%, rgba(255,255,255,.07), rgba(0,0,0,0) 55%),
+          radial-gradient(900px 650px at 92% 78%, rgba(72,138,252,.42), rgba(0,0,0,0) 62%),
+          radial-gradient(1200px 800px at 0% 100%, rgba(7,24,123,.18), rgba(0,0,0,0) 55%),
+          radial-gradient(900px 520px at 50% 115%, rgba(0,0,0,.92), rgba(0,0,0,.99));
       }
-      /* subtle grain */
-      .grain:before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.15'/%3E%3C/svg%3E");
+      .grain:after{
+        content:"";
+        position:absolute; inset:0;
+        z-index:-1;
+        background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");
         mix-blend-mode: overlay;
-        opacity: 0.35;
+        opacity: .28;
+        pointer-events:none;
+      }
+
+      /* big bottom glow arc */
+      .glow-arc{
+        position:absolute;
+        left:50%;
+        bottom:-180px;
+        transform:translateX(-50%);
+        width:min(1200px, 92vw);
+        height:520px;
+        border-radius:9999px;
+        background:
+          radial-gradient(closest-side at 50% 70%,
+            rgba(25,86,252,.55),
+            rgba(25,86,252,.18) 55%,
+            rgba(0,0,0,0) 72%);
+        filter: blur(10px);
+        opacity: .95;
+        z-index:-1;
+      }
+      .glow-arc:after{
+        content:"";
+        position:absolute; inset:-44px;
+        border-radius:9999px;
+        background: radial-gradient(closest-side at 50% 70%, rgba(156,203,254,.25), rgba(0,0,0,0) 70%);
+        filter: blur(18px);
+        opacity:.9;
+      }
+
+      /* marquee fades on edges */
+      .marquee-mask{
+        -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+        mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .anim-marquee { animation: none !important; }
       }
     </style>
   </head>
 
-  <body class="bg-neutral-950 text-white antialiased">
-    <!-- Top glow background -->
-    <div class="relative overflow-hidden">
-      <div class="absolute inset-0 -z-10">
-        <div class="absolute -top-64 left-1/2 h-[900px] w-[900px] -translate-x-1/2 rounded-full bg-r3-600/20 blur-[120px]"></div>
-        <div class="absolute top-40 right-[-200px] h-[700px] w-[700px] rounded-full bg-r3-900/20 blur-[120px]"></div>
-        <div class="absolute -bottom-72 left-[-220px] h-[700px] w-[700px] rounded-full bg-r3-500/10 blur-[120px]"></div>
-      </div>
+  <body class="bg-black text-white">
+    <section class="hero-bg grain">
+      <!-- NAVBAR (your original pill navbar design) -->
+      <header class="mx-auto max-w-7xl px-6 pt-6">
+        <div class="rounded-full border border-white/10 bg-white/5/30 backdrop-blur-xl shadow-soft">
+          <div class="flex items-center justify-between px-5 py-3">
+<!-- Logo -->
+<a href="/" class="flex items-center gap-3">
+  <img
+    src="logowhite.svg"
+    alt="R3 Staffing"
+    class="h-6 w-auto object-contain"
+  />
+</a>
 
-      <!-- NAV -->
-      <header class="sticky top-0 z-50 border-b border-white/10 bg-neutral-950/70 backdrop-blur">
-        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <a href="#top" class="group flex items-center gap-3">
-            <div class="relative grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10">
-              <div class="absolute inset-0 rounded-xl bg-gradient-to-br from-r3-600/25 to-transparent"></div>
-              <span class="font-display text-lg font800 tracking-tight">R3</span>
+
+
+            <!-- Links -->
+            <nav class="hidden items-center gap-10 font-inter text-[14px] text-white/70 md:flex">
+              <a href="#" class="hover:text-white">Home</a>
+              <a href="#" class="hover:text-white">Projects</a>
+              <a href="#" class="hover:text-white">About me</a>
+            </nav>
+
+            <!-- CTA -->
+            <div class="flex items-center gap-3">
+              <a
+                href="#"
+                class="hidden rounded-full border border-white/15 bg-white/5 px-4 py-2 font-onest text-[14px] font-semibold text-white/90 hover:bg-white/10 md:inline-flex"
+              >
+                Contact me
+              </a>
+
+              <button
+                id="menuBtn"
+                class="grid h-10 w-10 place-items-center rounded-full border border-white/15 bg-white/5 hover:bg-white/10 md:hidden"
+                aria-label="Open menu"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fill-rule="evenodd" d="M3 5h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd" />
+                </svg>
+              </button>
             </div>
-            <div class="leading-tight">
-              <div class="font-display text-sm font700 tracking-wide">R3 Staffing</div>
-              <div class="text-xs text-white/60">Sales Talent + AI Automation</div>
-            </div>
-          </a>
-
-          <nav class="hidden items-center gap-7 text-sm text-white/75 md:flex">
-            <a class="hover:text-white" href="#what">What you get</a>
-            <a class="hover:text-white" href="#how">How it works</a>
-            <a class="hover:text-white" href="#proof">Proof</a>
-            <a class="hover:text-white" href="#brand">Brand system</a>
-            <a class="hover:text-white" href="#faq">FAQ</a>
-          </nav>
-
-          <div class="hidden items-center gap-3 md:flex">
-            <a
-              href="#cta"
-              class="rounded-xl bg-white/5 px-4 py-2 text-sm font-semibold text-white ring-1 ring-white/10 hover:bg-white/10"
-              >See the offer</a
-            >
-            <a
-              href="#book"
-              class="relative overflow-hidden rounded-xl bg-r3-600 px-4 py-2 text-sm font-semibold text-white shadow-glow hover:bg-r3-500"
-            >
-              <span class="relative z-10">Book a call</span>
-              <span class="absolute inset-0 -z-0 opacity-40">
-                <span class="absolute inset-y-0 left-0 w-1/3 -skew-x-12 bg-white/20 animate-shimmer"></span>
-              </span>
-            </a>
           </div>
 
-          <button
-            id="menuBtn"
-            class="grid h-10 w-10 place-items-center rounded-xl bg-white/5 ring-1 ring-white/10 hover:bg-white/10 md:hidden"
-            aria-label="Open menu"
-          >
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-              <path fill-rule="evenodd" d="M3 5h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2zm0 6h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd" />
-            </svg>
-          </button>
-        </div>
-
-        <!-- Mobile menu -->
-        <div id="mobileMenu" class="hidden border-t border-white/10 bg-neutral-950/90 px-6 py-4 md:hidden">
-          <div class="flex flex-col gap-3 text-sm text-white/80">
-            <a class="hover:text-white" href="#what">What you get</a>
-            <a class="hover:text-white" href="#how">How it works</a>
-            <a class="hover:text-white" href="#proof">Proof</a>
-            <a class="hover:text-white" href="#brand">Brand system</a>
-            <a class="hover:text-white" href="#faq">FAQ</a>
-            <div class="mt-2 flex gap-3">
-              <a href="#cta" class="flex-1 rounded-xl bg-white/5 px-4 py-2 text-center font-semibold ring-1 ring-white/10">See the offer</a>
-              <a href="#book" class="flex-1 rounded-xl bg-r3-600 px-4 py-2 text-center font-semibold shadow-glow hover:bg-r3-500">Book a call</a>
+          <!-- Mobile menu -->
+          <div id="mobileMenu" class="hidden border-t border-white/10 px-5 py-4 md:hidden">
+            <div class="flex flex-col gap-3 font-inter text-[14px] text-white/80">
+              <a href="#" class="hover:text-white">Home</a>
+              <a href="#" class="hover:text-white">Projects</a>
+              <a href="#" class="hover:text-white">About me</a>
+              <a
+                href="#"
+                class="inline-flex justify-center rounded-full bg-white/5 px-4 py-2 font-onest font-semibold ring-1 ring-white/10 hover:bg-white/10"
+              >
+                Contact me
+              </a>
             </div>
           </div>
         </div>
       </header>
 
-      <!-- HERO -->
-      <main id="top" class="relative grain">
-        <section class="mx-auto max-w-7xl px-6 pb-16 pt-14 md:pb-24 md:pt-20">
-          <div class="grid items-center gap-10 lg:grid-cols-2">
-            <!-- Left -->
-            <div>
-              <div class="inline-flex items-center gap-2 rounded-full bg-white/5 px-3 py-1 text-xs text-white/70 ring-1 ring-white/10">
-                <span class="h-1.5 w-1.5 rounded-full bg-r3-500"></span>
-                Predictable revenue for high-ticket businesses
-              </div>
-
-              <h1 class="mt-5 font-display text-4xl font-extrabold tracking-tight sm:text-5xl">
-                Sales talent + AI automation —
-                <span class="bg-gradient-to-r from-r3-400 via-r3-600 to-r3-200 bg-clip-text text-transparent">
-                  built to scale high-ticket offers
-                </span>
-              </h1>
-
-              <p class="mt-5 max-w-xl text-base leading-relaxed text-white/70">
-                R3 Staffing combines vetted setters & closers with AI DM automation that qualifies leads and books calls — so you scale faster with less lift and clear ROI.
-              </p>
-
-              <div class="mt-7 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#book"
-                  class="inline-flex items-center justify-center gap-2 rounded-2xl bg-r3-600 px-6 py-3 text-sm font-semibold shadow-glow hover:bg-r3-500"
-                >
-                  Book a call
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 111.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                  </svg>
-                </a>
-                <a
-                  href="#what"
-                  class="inline-flex items-center justify-center rounded-2xl bg-white/5 px-6 py-3 text-sm font-semibold ring-1 ring-white/10 hover:bg-white/10"
-                >
-                  See what you get
-                </a>
-              </div>
-
-              <div class="mt-8 grid gap-4 sm:grid-cols-3">
-                <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                  <div class="text-sm font-semibold">Vetted talent</div>
-                  <div class="mt-1 text-xs text-white/60">Setters + closers ready to perform</div>
-                </div>
-                <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                  <div class="text-sm font-semibold">AI DM automation</div>
-                  <div class="mt-1 text-xs text-white/60">Qualify, nurture, and route leads</div>
-                </div>
-                <div class="rounded-2xl bg-white/5 p-4 ring-1 ring-white/10">
-                  <div class="text-sm font-semibold">Clear ROI</div>
-                  <div class="mt-1 text-xs text-white/60">Predictable pipeline + revenue</div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right (Visual) -->
-            <div class="relative">
-              <div class="absolute -inset-2 rounded-[28px] bg-gradient-to-br from-r3-600/20 via-white/5 to-transparent blur-2xl"></div>
-
-              <div class="relative overflow-hidden rounded-[28px] bg-white/5 ring-1 ring-white/10 shadow-soft">
-                <!-- Use your pasted Insight slide as hero visual -->
-                <!-- Replace src with your hosted URL(s) when deploying -->
-                <img
-                  src="/mnt/data/a164a5e8-954e-488d-9e0f-972ed49ea13d.png"
-                  alt="R3 Staffing insights"
-                  class="h-auto w-full object-cover"
-                />
-
-                <div class="border-t border-white/10 bg-neutral-950/40 p-5">
-                  <div class="flex flex-wrap items-center gap-2 text-xs text-white/60">
-                    <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">High-ticket course creators</span>
-                    <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">Service businesses</span>
-                    <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">US + global</span>
-                    <span class="rounded-full bg-white/5 px-3 py-1 ring-1 ring-white/10">Age 18–45</span>
-                  </div>
-                </div>
-              </div>
-
-              <div class="pointer-events-none absolute -right-6 top-10 hidden h-28 w-28 animate-floaty rounded-3xl bg-r3-600/20 blur-xl md:block"></div>
-              <div class="pointer-events-none absolute -left-8 bottom-14 hidden h-24 w-24 animate-floaty rounded-3xl bg-r3-900/25 blur-xl md:block"></div>
+      <!-- HERO (center everything vertically + horizontally) -->
+      <main class="mx-auto flex min-h-[calc(100vh-120px)] max-w-7xl flex-col justify-center px-6 pb-20 pt-10">
+        <div class="mx-auto w-full max-w-5xl text-center">
+          <!-- Top pill -->
+          <div class="mb-6 flex justify-center">
+            <div class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur">
+              <span class="h-2 w-2 rounded-full bg-r3-400"></span>
+              <span class="font-inter text-[13px] font-medium text-white/80">
+                Limited availability — <span class="text-r3-300">3 spots open</span>
+              </span>
             </div>
           </div>
-        </section>
 
-        <!-- TRUST STRIP -->
-        <section class="mx-auto max-w-7xl px-6 pb-10">
-          <div class="rounded-[28px] border border-white/10 bg-white/5 px-6 py-6">
-            <div class="grid gap-6 md:grid-cols-3 md:items-center">
-              <div class="text-sm text-white/70">
-                <span class="font-semibold text-white">One system</span> that combines elite human performance with automation — not another “service” that breaks under scale.
-              </div>
-              <div class="grid grid-cols-3 gap-3 md:col-span-2">
-                <div class="rounded-2xl bg-neutral-950/30 p-4 ring-1 ring-white/10">
-                  <div class="text-xs text-white/60">Positioning</div>
-                  <div class="mt-1 text-sm font-semibold">Premium</div>
+          <!-- H1 (locked single line) -->
+          <h1 class="whitespace-nowrap font-mont font-medium text-[44px] leading-[110%] sm:text-[56px]">
+            High-ticket sales, <span class="text-r3-300">fully optimized.</span>
+          </h1>
+
+          <!-- Subtitle -->
+          <p class="mx-auto mt-6 max-w-3xl font-inter text-[18px] leading-[32px] text-white/70 sm:text-[20px]">
+            We replace fragmented sales processes with trained closers and AI systems that convert more leads into revenue.
+          </p>
+
+          <!-- Buttons -->
+          <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="#"
+              class="inline-flex w-full items-center justify-center rounded-2xl bg-r3-700 px-10 py-4 font-onest text-[20px] font-semibold leading-[24px] text-white shadow-glow hover:bg-r3-600 sm:w-auto"
+            >
+              Schedule meeting
+            </a>
+            <a
+              href="#"
+              class="inline-flex w-full items-center justify-center rounded-2xl bg-white px-10 py-4 font-onest text-[20px] font-semibold leading-[24px] text-r3-800 shadow-soft hover:bg-white/90 sm:w-auto"
+            >
+              Plans and pricing
+            </a>
+          </div>
+
+          <!-- Infinite scrolling logos/boxes (centered) -->
+          <div class="mx-auto mt-14 max-w-5xl">
+            <div class="marquee-mask overflow-hidden">
+              <div class="flex w-[200%] gap-6 anim-marquee animate-marquee">
+                <!-- Group A -->
+                <div class="flex w-1/2 items-center justify-around gap-6">
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
                 </div>
-                <div class="rounded-2xl bg-neutral-950/30 p-4 ring-1 ring-white/10">
-                  <div class="text-xs text-white/60">Operating model</div>
-                  <div class="mt-1 text-sm font-semibold">Scalable</div>
-                </div>
-                <div class="rounded-2xl bg-neutral-950/30 p-4 ring-1 ring-white/10">
-                  <div class="text-xs text-white/60">Outcome</div>
-                  <div class="mt-1 text-sm font-semibold">Predictable revenue</div>
+                <!-- Group B (duplicate for seamless loop) -->
+                <div class="flex w-1/2 items-center justify-around gap-6">
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
+                  <div class="h-10 w-28 rounded-xl bg-white/10 ring-1 ring-white/10"></div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-
-        <!-- WHAT YOU GET -->
-        <section id="what" class="mx-auto max-w-7xl px-6 py-16 md:py-20">
-          <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
-            <div>
-              <h2 class="font-display text-3xl font-extrabold tracking-tight">Everything needed to scale a high-ticket sales system</h2>
-              <p class="mt-4 max-w-xl text-white/70">
-                R3 delivers predictable revenue growth by pairing vetted sales talent with AI-driven automation — so the funnel stays full and the calendar stays booked.
-              </p>
-
-              <div class="mt-8 grid gap-4">
-                <div class="rounded-[22px] bg-white/5 p-5 ring-1 ring-white/10">
-                  <div class="flex items-start justify-between gap-4">
-                    <div>
-                      <div class="text-sm font-semibold">1) Vetted high-ticket talent</div>
-                      <div class="mt-1 text-sm text-white/70">Setters + closers recruited for performance, communication, and consistency.</div>
-                    </div>
-                    <span class="rounded-full bg-r3-600/20 px-3 py-1 text-xs font-semibold text-r3-200 ring-1 ring-r3-600/30">Human</span>
-                  </div>
-                </div>
-
-                <div class="rounded-[22px] bg-white/5 p-5 ring-1 ring-white/10">
-                  <div class="flex items-start justify-between gap-4">
-                    <div>
-                      <div class="text-sm font-semibold">2) AI DM automation</div>
-                      <div class="mt-1 text-sm text-white/70">Respond to inbound leads, qualify prospects, and route to the right next step.</div>
-                    </div>
-                    <span class="rounded-full bg-r3-600/20 px-3 py-1 text-xs font-semibold text-r3-200 ring-1 ring-r3-600/30">Automation</span>
-                  </div>
-                </div>
-
-                <div class="rounded-[22px] bg-white/5 p-5 ring-1 ring-white/10">
-                  <div class="flex items-start justify-between gap-4">
-                    <div>
-                      <div class="text-sm font-semibold">3) System flow + reporting</div>
-                      <div class="mt-1 text-sm text-white/70">Simple, measurable pipeline built for clarity, scale, and ROI.</div>
-                    </div>
-                    <span class="rounded-full bg-r3-600/20 px-3 py-1 text-xs font-semibold text-r3-200 ring-1 ring-r3-600/30">System</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="space-y-6">
-              <div class="rounded-[28px] bg-white/5 p-6 ring-1 ring-white/10">
-                <div class="flex items-center justify-between">
-                  <div class="text-sm font-semibold">Perfect for</div>
-                  <div class="text-xs text-white/60">Target audience</div>
-                </div>
-                <div class="mt-5 grid gap-3 sm:grid-cols-2">
-                  <div class="rounded-2xl bg-neutral-950/30 p-4 ring-1 ring-white/10">
-                    <div class="text-sm font-semibold">Business owners</div>
-                    <div class="mt-1 text-xs text-white/60">Founders who need predictable pipeline</div>
-                  </div>
-                  <div class="rounded-2xl bg-neutral-950/30 p-4 ring-1 ring-white/10">
-                    <div class="text-sm font-semibold">Course creators</div>
-                    <div class="mt-1 text-xs text-white/60">High-ticket programs that need scale</div>
-                  </div>
-                  <div class="rounded-2xl bg-neutral-950/30 p-4 ring-1 ring-white/10">
-                    <div class="text-sm font-semibold">Service businesses</div>
-                    <div class="mt-1 text-xs text-white/60">Scaling offers without chaos</div>
-                  </div>
-                  <div class="rounded-2xl bg-neutral-950/30 p-4 ring-1 ring-white/10">
-                    <div class="text-sm font-semibold">Lean teams</div>
-                    <div class="mt-1 text-xs text-white/60">Need leverage + systems</div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="rounded-[28px] bg-white/5 p-6 ring-1 ring-white/10">
-                <div class="text-sm font-semibold">Competitor landscape</div>
-                <div class="mt-2 text-sm text-white/70">
-                  Staffing agencies • high-ticket recruiting firms • AI chatbot/automation agencies
-                </div>
-                <div class="mt-5 rounded-2xl bg-neutral-950/35 p-5 ring-1 ring-white/10">
-                  <div class="text-xs text-white/60">R3 differentiator</div>
-                  <div class="mt-2 text-sm font-semibold">
-                    Elite human sales talent <span class="text-white/50">+</span> AI automation <span class="text-white/50">=</span> complete scalable sales infrastructure
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- HOW IT WORKS -->
-        <section id="how" class="mx-auto max-w-7xl px-6 py-16 md:py-20">
-          <div class="flex flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-            <div class="max-w-xl">
-              <h2 class="font-display text-3xl font-extrabold tracking-tight">A clean setup. Then compounding execution.</h2>
-              <p class="mt-4 text-white/70">
-                We build the flow once, then the system runs daily: inbound → qualify → book → close → report.
-              </p>
-            </div>
-
-            <div class="w-full lg:max-w-2xl">
-              <div class="grid gap-4 md:grid-cols-3">
-                <div class="rounded-[26px] bg-white/5 p-6 ring-1 ring-white/10">
-                  <div class="text-xs text-white/60">Step 01</div>
-                  <div class="mt-2 text-sm font-semibold">Audit + plan</div>
-                  <div class="mt-2 text-sm text-white/70">Offer, ICP, messaging, and funnel map.</div>
-                </div>
-                <div class="rounded-[26px] bg-white/5 p-6 ring-1 ring-white/10">
-                  <div class="text-xs text-white/60">Step 02</div>
-                  <div class="mt-2 text-sm font-semibold">Deploy system</div>
-                  <div class="mt-2 text-sm text-white/70">Talent placement + AI DM automation.</div>
-                </div>
-                <div class="rounded-[26px] bg-white/5 p-6 ring-1 ring-white/10">
-                  <div class="text-xs text-white/60">Step 03</div>
-                  <div class="mt-2 text-sm font-semibold">Scale</div>
-                  <div class="mt-2 text-sm text-white/70">Weekly optimization + reporting.</div>
-                </div>
-              </div>
-
-              <div class="mt-6 rounded-[28px] bg-gradient-to-br from-r3-600/15 via-white/5 to-transparent p-6 ring-1 ring-white/10">
-                <div class="flex flex-wrap items-center justify-between gap-3">
-                  <div>
-                    <div class="text-sm font-semibold">System KPI targets</div>
-                    <div class="mt-1 text-sm text-white/70">Response time • qualification rate • booked calls • close rate • CAC/LTV</div>
-                  </div>
-                  <a href="#book" class="rounded-2xl bg-r3-600 px-5 py-2 text-sm font-semibold shadow-glow hover:bg-r3-500">
-                    Get your build plan
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- PROOF / INSIGHTS -->
-        <section id="proof" class="mx-auto max-w-7xl px-6 py-16 md:py-20">
-          <div class="grid gap-10 lg:grid-cols-2 lg:items-start">
-            <div>
-              <h2 class="font-display text-3xl font-extrabold tracking-tight">The positioning: premium, modern, scalable</h2>
-              <p class="mt-4 text-white/70">
-                The brand system is built around clarity and authority — deep navy into progressive blue, smooth geometry, and high readability.
-              </p>
-
-              <div class="mt-8 grid gap-4">
-                <div class="rounded-[22px] bg-white/5 p-5 ring-1 ring-white/10">
-                  <div class="text-sm font-semibold">“Sales talent + AI. Predictable revenue.”</div>
-                  <div class="mt-2 text-sm text-white/70">
-                    Simple tagline options that match the offer and deliver immediate clarity.
-                  </div>
-                </div>
-
-                <div class="rounded-[22px] bg-white/5 p-5 ring-1 ring-white/10">
-                  <div class="text-sm font-semibold">Brand values</div>
-                  <div class="mt-2 flex flex-wrap gap-2">
-                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">trustworthy</span>
-                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">premium</span>
-                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">scalable</span>
-                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">efficient</span>
-                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">ROI-driven</span>
-                    <span class="rounded-full bg-white/5 px-3 py-1 text-xs ring-1 ring-white/10">automated</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="space-y-6">
-              <div class="overflow-hidden rounded-[28px] bg-white/5 ring-1 ring-white/10 shadow-soft">
-                <img
-                  src="/mnt/data/a164a5e8-954e-488d-9e0f-972ed49ea13d.png"
-                  alt="R3 staffing insight board"
-                  class="w-full"
-                />
-              </div>
-
-              <div class="rounded-[28px] bg-white/5 p-6 ring-1 ring-white/10">
-                <div class="text-sm font-semibold">Competitor keywords we win on</div>
-                <div class="mt-3 flex flex-wrap gap-2 text-xs">
-                  <span class="rounded-full bg-neutral-950/35 px-3 py-1 ring-1 ring-white/10">high-ticket sales staffing</span>
-                  <span class="rounded-full bg-neutral-950/35 px-3 py-1 ring-1 ring-white/10">sales-as-a-service</span>
-                  <span class="rounded-full bg-neutral-950/35 px-3 py-1 ring-1 ring-white/10">appointment-setting agency</span>
-                  <span class="rounded-full bg-neutral-950/35 px-3 py-1 ring-1 ring-white/10">closers-for-hire</span>
-                  <span class="rounded-full bg-neutral-950/35 px-3 py-1 ring-1 ring-white/10">AI DM automation</span>
-                  <span class="rounded-full bg-neutral-950/35 px-3 py-1 ring-1 ring-white/10">chatbot lead qualification</span>
-                  <span class="rounded-full bg-neutral-950/35 px-3 py-1 ring-1 ring-white/10">outsourced sales team</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- BRAND SYSTEM (use the 3 white slides) -->
-        <section id="brand" class="mx-auto max-w-7xl px-6 py-16 md:py-20">
-          <div class="flex items-end justify-between gap-6">
-            <div class="max-w-2xl">
-              <h2 class="font-display text-3xl font-extrabold tracking-tight">Brand system (from the deck)</h2>
-              <p class="mt-4 text-white/70">
-                Built for transparency + modularity (3-part mark), progressive navy spectrum, and clean typography (Montserrat + Inter).
-              </p>
-            </div>
-          </div>
-
-          <div class="mt-10 grid gap-6 lg:grid-cols-3">
-            <div class="overflow-hidden rounded-[28px] bg-white/5 ring-1 ring-white/10 shadow-soft">
-              <div class="border-b border-white/10 p-4">
-                <div class="text-sm font-semibold">Meaning</div>
-                <div class="text-xs text-white/60">Modular mark + forward momentum</div>
-              </div>
-              <img
-                src="/mnt/data/1c0c8ef6-d8d9-4456-a7ff-88fdda4da509.png"
-                alt="Meaning slide"
-                class="w-full bg-white object-cover"
-              />
-            </div>
-
-            <div class="overflow-hidden rounded-[28px] bg-white/5 ring-1 ring-white/10 shadow-soft">
-              <div class="border-b border-white/10 p-4">
-                <div class="text-sm font-semibold">Progressive-Navy</div>
-                <div class="text-xs text-white/60">Authority → clarity spectrum</div>
-              </div>
-              <img
-                src="/mnt/data/9443c742-df50-4045-9985-0718c46827e0.png"
-                alt="Progressive navy palette slide"
-                class="w-full bg-white object-cover"
-              />
-            </div>
-
-            <div class="overflow-hidden rounded-[28px] bg-white/5 ring-1 ring-white/10 shadow-soft">
-              <div class="border-b border-white/10 p-4">
-                <div class="text-sm font-semibold">Typeface</div>
-                <div class="text-xs text-white/60">Montserrat + Inter</div>
-              </div>
-              <img
-                src="/mnt/data/37277170-4042-4929-b7bc-ee7a631dde61.png"
-                alt="Typeface slide"
-                class="w-full bg-white object-cover"
-              />
-            </div>
-          </div>
-        </section>
-
-        <!-- CTA -->
-        <section id="cta" class="mx-auto max-w-7xl px-6 py-16 md:py-20">
-          <div class="relative overflow-hidden rounded-[32px] border border-white/10 bg-gradient-to-br from-white/5 via-neutral-950/40 to-r3-600/10 p-10 shadow-soft">
-            <div class="absolute -right-24 -top-24 h-72 w-72 rounded-full bg-r3-600/20 blur-[90px]"></div>
-            <div class="absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-r3-900/20 blur-[90px]"></div>
-
-            <div class="relative z-10 grid gap-10 lg:grid-cols-2 lg:items-center">
-              <div>
-                <h3 class="font-display text-3xl font-extrabold tracking-tight">
-                  Want the full system installed for your offer?
-                </h3>
-                <p class="mt-4 text-white/70">
-                  If you’re selling a high-ticket offer and need consistent booked calls + closers to convert them, R3 is built for you.
-                </p>
-
-                <div class="mt-7 flex flex-col gap-3 sm:flex-row" id="book">
-                  <a
-                    href="#"
-                    class="inline-flex items-center justify-center rounded-2xl bg-r3-600 px-6 py-3 text-sm font-semibold shadow-glow hover:bg-r3-500"
-                    onclick="alert('Swap this link with your Calendly / booking URL'); return false;"
-                  >
-                    Book a call (add your link)
-                  </a>
-                  <a
-                    href="#faq"
-                    class="inline-flex items-center justify-center rounded-2xl bg-white/5 px-6 py-3 text-sm font-semibold ring-1 ring-white/10 hover:bg-white/10"
-                  >
-                    Read FAQ
-                  </a>
-                </div>
-
-                <div class="mt-6 text-xs text-white/60">
-                  Typical outcomes: faster response time • higher qualification rate • more booked calls • cleaner pipeline visibility
-                </div>
-              </div>
-
-              <div class="rounded-[28px] bg-white/5 p-6 ring-1 ring-white/10">
-                <div class="text-sm font-semibold">What happens on the call</div>
-                <div class="mt-4 space-y-3 text-sm text-white/70">
-                  <div class="flex gap-3">
-                    <span class="mt-1 h-2 w-2 rounded-full bg-r3-500"></span>
-                    <span>Diagnose your current inbound + close flow</span>
-                  </div>
-                  <div class="flex gap-3">
-                    <span class="mt-1 h-2 w-2 rounded-full bg-r3-500"></span>
-                    <span>Map the “talent + automation” build plan</span>
-                  </div>
-                  <div class="flex gap-3">
-                    <span class="mt-1 h-2 w-2 rounded-full bg-r3-500"></span>
-                    <span>Set KPI targets + rollout timeline</span>
-                  </div>
-                  <div class="mt-5 rounded-2xl bg-neutral-950/35 p-4 ring-1 ring-white/10">
-                    <div class="text-xs text-white/60">Reminder</div>
-                    <div class="mt-1 text-sm font-semibold">Not a generic agency retainer — it’s a scalable sales infrastructure.</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- FAQ -->
-        <section id="faq" class="mx-auto max-w-7xl px-6 py-16 md:py-20">
-          <div class="max-w-2xl">
-            <h2 class="font-display text-3xl font-extrabold tracking-tight">FAQ</h2>
-            <p class="mt-4 text-white/70">Quick answers before you book.</p>
-          </div>
-
-          <div class="mt-10 grid gap-4 lg:grid-cols-2">
-            <details class="group rounded-[22px] bg-white/5 p-6 ring-1 ring-white/10">
-              <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-semibold">
-                Who is this best for?
-                <span class="ml-4 text-white/60 group-open:rotate-180 transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-              </summary>
-              <p class="mt-3 text-sm text-white/70">
-                High-ticket course creators and service businesses that need consistent inbound handling, qualification, booked calls, and strong close rates.
-              </p>
-            </details>
-
-            <details class="group rounded-[22px] bg-white/5 p-6 ring-1 ring-white/10">
-              <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-semibold">
-                Is this only automation?
-                <span class="ml-4 text-white/60 group-open:rotate-180 transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-              </summary>
-              <p class="mt-3 text-sm text-white/70">
-                No — it’s the combo: vetted setters/closers + AI DM automation + an operating system. That’s where predictability comes from.
-              </p>
-            </details>
-
-            <details class="group rounded-[22px] bg-white/5 p-6 ring-1 ring-white/10">
-              <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-semibold">
-                What channels can you support?
-                <span class="ml-4 text-white/60 group-open:rotate-180 transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-              </summary>
-              <p class="mt-3 text-sm text-white/70">
-                Anywhere you’re getting leads and conversations: DMs, inbound forms, and the handoff into booking/CRM (configured to your stack).
-              </p>
-            </details>
-
-            <details class="group rounded-[22px] bg-white/5 p-6 ring-1 ring-white/10">
-              <summary class="flex cursor-pointer list-none items-center justify-between text-sm font-semibold">
-                What does success look like?
-                <span class="ml-4 text-white/60 group-open:rotate-180 transition">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
-                  </svg>
-                </span>
-              </summary>
-              <p class="mt-3 text-sm text-white/70">
-                Faster response time, higher qualification rate, more booked calls, stronger close rate, and clean reporting that shows ROI.
-              </p>
-            </details>
-          </div>
-        </section>
-
-        <!-- FOOTER -->
-        <footer class="border-t border-white/10">
-          <div class="mx-auto max-w-7xl px-6 py-10">
-            <div class="flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
-              <div>
-                <div class="font-display text-base font-bold">R3 Staffing</div>
-                <div class="mt-1 text-sm text-white/60">Predictable revenue for high-ticket businesses — elite sales talent + AI DM automation.</div>
-              </div>
-
-              <div class="flex flex-wrap gap-3 text-sm text-white/70">
-                <a class="hover:text-white" href="#what">What you get</a>
-                <a class="hover:text-white" href="#how">How it works</a>
-                <a class="hover:text-white" href="#proof">Proof</a>
-                <a class="hover:text-white" href="#brand">Brand system</a>
-                <a class="hover:text-white" href="#book">Book</a>
-              </div>
-            </div>
-
-            <div class="mt-8 flex flex-col gap-2 text-xs text-white/45 md:flex-row md:items-center md:justify-between">
-              <div>© <span id="year"></span> R3 Staffing. All rights reserved.</div>
-              <div>Built with a progressive navy system: #013052 → #CCE7FE</div>
-            </div>
-          </div>
-        </footer>
+        </div>
       </main>
-    </div>
 
-    <script>
-      // mobile menu
-      const btn = document.getElementById("menuBtn");
-      const menu = document.getElementById("mobileMenu");
-      btn?.addEventListener("click", () => menu.classList.toggle("hidden"));
+      <!-- Bottom glow -->
+      <div class="glow-arc"></div>
 
-      // year
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
+      <!-- Bottom fade -->
+      <div class="pointer-events-none absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent"></div>
+
+      <script>
+        const btn = document.getElementById("menuBtn");
+        const menu = document.getElementById("mobileMenu");
+        btn?.addEventListener("click", () => menu.classList.toggle("hidden"));
+      </script>
+    </section>
   </body>
 </html>

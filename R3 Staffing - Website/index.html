@@ -37,6 +37,48 @@
         mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
         -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
       }
+      /* Testimonials marquee (two lanes, opposite directions) */
+@keyframes tmarquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes tmarqueeReverse {
+  0% { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+.testimonials-track {
+  display: flex;
+  width: max-content;
+  animation: tmarquee 26s linear infinite;
+}
+.testimonials-track:hover { animation-play-state: paused; }
+
+.testimonials-track-reverse {
+  animation: tmarqueeReverse 28s linear infinite;
+}
+.testimonials-track-reverse:hover { animation-play-state: paused; }
+
+.testimonials-fade {
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+
+/* Card styling */
+.testimonial-card {
+  width: 380px;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #fff;
+  padding: 18px 18px 16px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+}
+.testimonial-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.10);
+  border-color: rgba(0,0,0,0.12);
+}
+
     </style>
 
     <script>
@@ -332,15 +374,17 @@
             </ul>
           </div>
 
-          <!-- Image block -->
-          <div class="relative flex items-end justify-end overflow-hidden rounded-2xl border border-black/10 bg-gradient-to-br from-black/[0.02] to-transparent p-4">
-            <!-- swap for your dashboard/devices image -->
-            <img
-              src="bento2.png"
-              alt=""
-              class="w-full max-w-[520px] translate-y-5 object-contain"
-            />
-          </div>
+<!-- Image block (clean, no “box in a box”) -->
+<div class="relative flex items-center justify-center overflow-hidden rounded-2xl bg-white">
+  <div class="h-[240px] w-full lg:h-[260px]">
+    <img
+      src="bento2.png"
+      alt=""
+      class="h-full w-full object-contain"
+    />
+  </div>
+</div>
+  
         </div>
       </div>
 
@@ -414,7 +458,545 @@
   </div>
 </section>
 <!-- /SECTION 3 -->
+ <!-- SECTION 4: How It Works (process) -->
+<section class="relative px-10 pb-28 lg:px-14">
+  <div class="mx-auto max-w-[1200px]">
+    <!-- Heading -->
+    <div class="mb-10">
+      <h2 class="font-manrope text-[44px] font-semibold leading-[1.15] tracking-tight text-black">
+        How It Works
+      </h2>
+      <p class="mt-3 font-geist text-[18px] font-normal leading-[1.6] tracking-[-0.64px] text-[#605F5F]">
+        A repeatable process to place sales talent that performs — without guesswork.
+      </p>
+    </div>
 
+    <!-- Steps -->
+    <div class="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+      <!-- Step 1 -->
+      <div class="rounded-2xl border border-black/10 bg-white p-7 shadow-sm">
+        <div class="flex items-center justify-between">
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-black text-white font-geist text-[14px] font-semibold"
+            >1</span
+          >
+          <i class="ph ph-clipboard-text text-[20px] text-black/45"></i>
+        </div>
+
+        <h3 class="mt-5 font-manrope text-[22px] font-semibold tracking-tight text-black">
+          Define the Role
+        </h3>
+        <p class="mt-2 font-geist text-[16px] leading-[1.6] text-[#605F5F]">
+          We map your offer, comp, KPIs, and ideal closer profile so hiring is precise.
+        </p>
+
+        <ul class="mt-4 space-y-2 font-geist text-[14px] leading-[1.55] text-black/70">
+          <li class="flex items-start gap-2">
+            <i class="ph ph-check text-[16px] text-black/55"></i>
+            Offer + deal size alignment
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="ph ph-check text-[16px] text-black/55"></i>
+            Comp + ramp expectations
+          </li>
+        </ul>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="rounded-2xl border border-black/10 bg-white p-7 shadow-sm">
+        <div class="flex items-center justify-between">
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-black text-white font-geist text-[14px] font-semibold"
+            >2</span
+          >
+          <i class="ph ph-shield-check text-[20px] text-black/45"></i>
+        </div>
+
+        <h3 class="mt-5 font-manrope text-[22px] font-semibold tracking-tight text-black">
+          Proof-First Vetting
+        </h3>
+        <p class="mt-2 font-geist text-[16px] leading-[1.6] text-[#605F5F]">
+          We validate performance with scorecards, recordings, and real indicators.
+        </p>
+
+        <ul class="mt-4 space-y-2 font-geist text-[14px] leading-[1.55] text-black/70">
+          <li class="flex items-start gap-2">
+            <i class="ph ph-check text-[16px] text-black/55"></i>
+            Call reviews + frameworks
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="ph ph-check text-[16px] text-black/55"></i>
+            Consistency over claims
+          </li>
+        </ul>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="rounded-2xl border border-black/10 bg-white p-7 shadow-sm">
+        <div class="flex items-center justify-between">
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-black text-white font-geist text-[14px] font-semibold"
+            >3</span
+          >
+          <i class="ph ph-handshake text-[20px] text-black/45"></i>
+        </div>
+
+        <h3 class="mt-5 font-manrope text-[22px] font-semibold tracking-tight text-black">
+          Placement & Handoff
+        </h3>
+        <p class="mt-2 font-geist text-[16px] leading-[1.6] text-[#605F5F]">
+          You meet vetted candidates, then we hand off cleanly so you can move fast.
+        </p>
+
+        <ul class="mt-4 space-y-2 font-geist text-[14px] leading-[1.55] text-black/70">
+          <li class="flex items-start gap-2">
+            <i class="ph ph-check text-[16px] text-black/55"></i>
+            Introductions + context
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="ph ph-check text-[16px] text-black/55"></i>
+            Ramp-ready setup
+          </li>
+        </ul>
+      </div>
+
+      <!-- Step 4 -->
+      <div class="rounded-2xl border border-black/10 bg-white p-7 shadow-sm">
+        <div class="flex items-center justify-between">
+          <span
+            class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-black text-white font-geist text-[14px] font-semibold"
+            >4</span
+          >
+          <i class="ph ph-trend-up text-[20px] text-black/45"></i>
+        </div>
+
+        <h3 class="mt-5 font-manrope text-[22px] font-semibold tracking-tight text-black">
+          Scale With Confidence
+        </h3>
+        <p class="mt-2 font-geist text-[16px] leading-[1.6] text-[#605F5F]">
+          Repeat the system whenever you need to add capacity — same standards every time.
+        </p>
+
+        <ul class="mt-4 space-y-2 font-geist text-[14px] leading-[1.55] text-black/70">
+          <li class="flex items-start gap-2">
+            <i class="ph ph-check text-[16px] text-black/55"></i>
+            Consistent hiring quality
+          </li>
+          <li class="flex items-start gap-2">
+            <i class="ph ph-check text-[16px] text-black/55"></i>
+            Built for growth
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom CTA strip -->
+    <div class="mt-8 rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
+      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p class="font-manrope text-[20px] font-semibold tracking-tight text-black">
+            Want to see if R3 fits your offer?
+          </p>
+          <p class="mt-1 font-geist text-[16px] leading-[1.6] text-[#605F5F]">
+            Book a quick strategy call — we’ll map the role and show you the system.
+          </p>
+        </div>
+
+        <a
+          href="#"
+          class="inline-flex h-[50px] shrink-0 items-center gap-3 rounded-2xl bg-black px-6 font-geist text-[15px] font-medium text-white shadow-cta hover:bg-black/90"
+        >
+          Book a strategy call
+          <span class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-xl bg-white/10">
+            <i class="ph ph-arrow-right text-[18px]"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /SECTION 4 -->
+<!-- SECTION 5: Testimonials (infinite scroll) -->
+<section class="relative px-10 pb-28 lg:px-14">
+  <div class="mx-auto max-w-[1200px]">
+    <!-- Heading -->
+    <div class="mb-10">
+      <h2 class="font-manrope text-[44px] font-semibold leading-[1.15] tracking-tight text-black">
+        Teams Stick With R3 For One Reason:
+        <span class="text-black/60">It Works.</span>
+      </h2>
+      <p class="mt-3 font-geist text-[18px] font-normal leading-[1.6] tracking-[-0.64px] text-[#605F5F]">
+        Proof from operators hiring in high-ticket environments.
+      </p>
+    </div>
+
+    <!-- Top trust row -->
+    <div class="mb-8 flex flex-wrap items-center gap-3">
+      <div class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 font-geist text-[13px] font-medium text-black/70">
+        <i class="ph ph-star-four text-[16px] text-black/60"></i>
+        4.8 average rating
+      </div>
+      <div class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 font-geist text-[13px] font-medium text-black/70">
+        <i class="ph ph-check-circle text-[16px] text-black/60"></i>
+        Proof-first vetting
+      </div>
+      <div class="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white px-4 py-2 font-geist text-[13px] font-medium text-black/70">
+        <i class="ph ph-lightning text-[16px] text-black/60"></i>
+        Fast ramp placements
+      </div>
+    </div>
+
+    <!-- Infinite lanes -->
+    <div class="space-y-5">
+      <!-- Lane 1 -->
+      <div class="relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm testimonials-fade">
+        <div class="testimonials-track gap-5 px-5 py-5">
+          <!-- Set A -->
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Placed in 10 days</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “R3 felt like an operating system for hiring. We stopped guessing and started placing closers that actually
+              run the process.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Jordan M.</p>
+                <p class="font-geist text-[13px] text-black/55">Sales Director • High-ticket coaching</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Proof-first</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “The vetting is the difference. Scorecards + call reviews made it obvious who could close and who just
+              talked.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Alyssa R.</p>
+                <p class="font-geist text-[13px] text-black/55">Founder • B2B services</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Scale-ready</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “We hired for two different seats and the process held up both times. Same standards, same quality.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Chris D.</p>
+                <p class="font-geist text-[13px] text-black/55">COO • Education</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">High-ticket</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “Our new rep ramped fast because the handoff was clean. It wasn’t a ‘good luck’ hire — it was engineered.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Maya S.</p>
+                <p class="font-geist text-[13px] text-black/55">Head of Sales • Agencies</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <!-- Set B (duplicate for seamless loop) -->
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Placed in 10 days</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “R3 felt like an operating system for hiring. We stopped guessing and started placing closers that actually
+              run the process.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Jordan M.</p>
+                <p class="font-geist text-[13px] text-black/55">Sales Director • High-ticket coaching</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Proof-first</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “The vetting is the difference. Scorecards + call reviews made it obvious who could close and who just
+              talked.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Alyssa R.</p>
+                <p class="font-geist text-[13px] text-black/55">Founder • B2B services</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Scale-ready</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “We hired for two different seats and the process held up both times. Same standards, same quality.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Chris D.</p>
+                <p class="font-geist text-[13px] text-black/55">COO • Education</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">High-ticket</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “Our new rep ramped fast because the handoff was clean. It wasn’t a ‘good luck’ hire — it was engineered.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Maya S.</p>
+                <p class="font-geist text-[13px] text-black/55">Head of Sales • Agencies</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <!-- Lane 2 (reverse for “surprise” feel) -->
+      <div class="relative overflow-hidden rounded-2xl border border-black/10 bg-white shadow-sm testimonials-fade">
+        <div class="testimonials-track testimonials-track-reverse gap-5 px-5 py-5">
+          <!-- Set A -->
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">No volume hiring</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “Every candidate felt intentional. We weren’t flooded with resumes — we got people who could actually do the job.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Ethan P.</p>
+                <p class="font-geist text-[13px] text-black/55">Founder • SaaS</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Fast ramp</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “Week one they were booking and running calls. The ramp plan + context made onboarding painless.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Sabrina K.</p>
+                <p class="font-geist text-[13px] text-black/55">Ops Lead • B2C offers</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Predictable</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “The biggest win is repeatability. We know what we’re getting every time we hire through R3.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Noah T.</p>
+                <p class="font-geist text-[13px] text-black/55">GM • B2B consulting</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Aligned</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “They understood our sales motion immediately. Candidates were aligned with our offer and standards.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Lina W.</p>
+                <p class="font-geist text-[13px] text-black/55">Head of Growth • Agencies</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <!-- Set B (duplicate) -->
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">No volume hiring</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “Every candidate felt intentional. We weren’t flooded with resumes — we got people who could actually do the job.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Ethan P.</p>
+                <p class="font-geist text-[13px] text-black/55">Founder • SaaS</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Fast ramp</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “Week one they were booking and running calls. The ramp plan + context made onboarding painless.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Sabrina K.</p>
+                <p class="font-geist text-[13px] text-black/55">Ops Lead • B2C offers</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Predictable</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “The biggest win is repeatability. We know what we’re getting every time we hire through R3.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Noah T.</p>
+                <p class="font-geist text-[13px] text-black/55">GM • B2B consulting</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-1 text-black/70">
+                <i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i><i class="ph ph-star-fill text-[14px]"></i>
+              </div>
+              <span class="rounded-full border border-black/10 bg-white px-3 py-1 font-geist text-[12px] font-medium text-black/55">Aligned</span>
+            </div>
+            <p class="mt-4 font-geist text-[16px] leading-[1.65] text-black/80">
+              “They understood our sales motion immediately. Candidates were aligned with our offer and standards.”
+            </p>
+            <div class="mt-6 flex items-center justify-between">
+              <div>
+                <p class="font-manrope text-[16px] font-semibold text-black">Lina W.</p>
+                <p class="font-geist text-[13px] text-black/55">Head of Growth • Agencies</p>
+              </div>
+              <div class="h-10 w-10 rounded-xl bg-black/[0.04]"></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div class="mt-10 rounded-2xl border border-black/10 bg-white p-6 shadow-sm">
+      <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+        <div>
+          <p class="font-manrope text-[20px] font-semibold tracking-tight text-black">
+            Ready to hire without the gamble?
+          </p>
+          <p class="mt-1 font-geist text-[16px] leading-[1.6] text-[#605F5F]">
+            Book a strategy call and we’ll map the exact seat you need.
+          </p>
+        </div>
+
+        <a
+          href="#"
+          class="inline-flex h-[50px] shrink-0 items-center gap-3 rounded-2xl bg-black px-6 font-geist text-[15px] font-medium text-white shadow-cta hover:bg-black/90"
+        >
+          Book a strategy call
+          <span class="inline-flex h-[34px] w-[34px] items-center justify-center rounded-xl bg-white/10">
+            <i class="ph ph-arrow-right text-[18px]"></i>
+          </span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /SECTION 5 -->
 
     </main>
   </body>
